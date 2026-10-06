@@ -1,54 +1,35 @@
-## Customize this file after creating the new REPO and remove this lines.
-What to adjust:  
-* Add the your project or repo name direct under the logo.
-* Add a short and long desciption.
-* Add links for your final repo to report a bug or request a feature.
-* Add list of used technologies.
-* If you have, add a roadmap or remove this section.
-* Fill up the section for set up and documentation.
- * Start in this file only with documentation and link to the docs folder.
-* Add more project shields. Use [shields.io](https://shields.io/) with style `for-the-badge`.
-
-## ------- end to remove -------
-<!-- add Project Logo, if existing -->
-
-# repo or project name
+# Keycloak Terraform
 
 [![Made with love by it@M][made-with-love-shield]][itm-opensource]
-<!-- feel free to add more shields, style 'for-the-badge' -> see https://shields.io/badges -->
 
-*Add a description from your project here.*
+Collection of Terraform modules and example environments for configuring a Keycloak.
 
+## Usage
 
-### Built With
+### Modules
 
-The documentation project is built with technologies we use in our projects:
+Example for the `oidc-client` module:
 
-* *write here the list of used technologies*
-
-## Roadmap
-
-*if you have a ROADMAP for your project add this here*
-
-
-See the [open issues](#) for a full list of proposed features (and known issues).
-
-
-## Set up
-*how can i start and fly this project*
-
-## Documentation
-*what insights do you have to tell*
-
-```mermaid
-graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;
+```terraform
+module "itm-oidc-client" {
+  source = "github.com/it-at-m/keycloak-tarraform/modules/oidc-client"
+  ref = "main" # Version
+}
 ```
 
-use [diagrams](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams).
+### Example local environment
+
+Start the provided `stack/docker-compose.yml` with `docker compose up`.
+
+Creates an `LHM-Demo` realm with following clients and users:
+- Clients
+  - `lhm-demo-backend` (confidential client)
+  - `lhm-demo-frontend` (public client)
+- Users
+  - `maria.admin` (PW: `Demo123!Admin`)
+  - `thomas.tester` (PW: `Demo123!Test`)
+
+The according Terraform configuration can be found in [`./local`](./local).
 
 ## Contributing
 
@@ -66,16 +47,10 @@ Don't forget to give the project a star! Thanks again!
 
 More about this in the [CODE_OF_CONDUCT](/CODE_OF_CONDUCT.md) file.
 
-
 ## License
 
-Distributed under the MIT License. See [LICENSE](LICENSE) file for more information.
-
+Distributed under the MIT License. See [LICENSE][license] file for more information.
 
 ## Contact
 
 it@M - opensource@muenchen.de
-
-<!-- project shields / links -->
-[made-with-love-shield]: https://img.shields.io/badge/made%20with%20%E2%9D%A4%20by-it%40M-yellow?style=for-the-badge
-[itm-opensource]: https://opensource.muenchen.de/

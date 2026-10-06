@@ -1,0 +1,51 @@
+name: keycloak-terraform-stack
+
+x-healthcheck: &healthcheck
+  interval: 30s
+  timeout: 60s
+  retries: 3
+  start_period: 60s
+
+x-security-settings: &security_settings
+  security_opt:
+    - no-new-privileges:true
+
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.6.4@sha256:0aae0de7fca85525f727d3354df17896092de8bb26ae4c12d89c77e5df8cbce4
+    command:
+      - start-dev
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
+      KC_HEALTH_ENABLED: "true"
+      KC_HTTP_PORT: 8100
+      KC_HTTP_RELATIVE_PATH: /auth
+    ports:
+      - "8100:8100"
+    healthcheck:
+      <<: *healthcheck
+      test: [
+        "CMD-SHELL",
+        # health check see https://www.keycloak.org/observability/health#_healthcheck
+        "{ printf 'HEAD /auth/health/ready HTTP/1.0\r\n\r\n' >&0; grep 'HTTP/1.0 200'; } 0<>/dev/tcp/localhost/9000"
+      ]
+    <<: *security_settings
+
+  init-keycloak:
+    build:
+      context: ./keycloak
+      dockerfile: Dockerfile
+      args:
+        - HTTPS_PROXY=${HTTPS_PROXY}
+    depends_on:
+      keycloak:
+        condition: service_healthy
+    working_dir: /workspace/local
+    entrypoint: ["/bin/entrypoint.sh"]
+    environment:
+      - HTTPS_PROXY=${HTTPS_PROXY}
+      - NO_PROXY=localhost,keycloak
+    volumes:
+      - ../:/workspace
+    <<: *security_settings
