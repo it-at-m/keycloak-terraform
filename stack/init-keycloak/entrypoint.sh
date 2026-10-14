@@ -3,7 +3,7 @@ set -e
 
 # Wait until Keycloak is available
 echo "Waiting for Keycloak at ${KEYCLOAK_URL}..."
-until wget --spider -q ${KEYCLOAK_URL}; do
+until wget --spider -q "${KEYCLOAK_URL}"; do
   echo "Keycloak not ready yet. Sleeping 5s..."
   sleep 5
 done

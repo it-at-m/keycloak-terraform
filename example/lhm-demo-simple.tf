@@ -296,46 +296,8 @@ module "demo_confidential_client" {
   ]
 }
 
-# 3b. SPA-Client als Template (siehe ADR-003 / docs/architecture/oidc-client-templates.md)
+# 3b. SPA-Client als Template
 # ============================================================================
-# Migration von modules/oidc-client auf oidc-client-spa: Die zugrunde
-# liegenden Keycloak-Ressourcen bleiben dank der moved-Bloecke erhalten
-# (kein Neuanlegen des Clients/der Rollen).
-moved {
-  from = module.demo_public_client.keycloak_openid_client.client
-  to   = module.demo_public_client.module.oidc_client.keycloak_openid_client.client
-}
-
-moved {
-  from = module.demo_public_client.keycloak_role.base_roles["admin"]
-  to   = module.demo_public_client.module.oidc_client.keycloak_role.base_roles["admin"]
-}
-
-moved {
-  from = module.demo_public_client.keycloak_role.base_roles["tester"]
-  to   = module.demo_public_client.module.oidc_client.keycloak_role.base_roles["tester"]
-}
-
-moved {
-  from = module.demo_public_client.keycloak_role.base_roles["viewer"]
-  to   = module.demo_public_client.module.oidc_client.keycloak_role.base_roles["viewer"]
-}
-
-moved {
-  from = module.demo_public_client.keycloak_role.composite_roles["lhm-ab-demo-frontend-admin"]
-  to   = module.demo_public_client.module.oidc_client.keycloak_role.composite_roles["lhm-ab-demo-frontend-admin"]
-}
-
-moved {
-  from = module.demo_public_client.keycloak_role.composite_roles["lhm-ab-demo-frontend-tester"]
-  to   = module.demo_public_client.module.oidc_client.keycloak_role.composite_roles["lhm-ab-demo-frontend-tester"]
-}
-
-moved {
-  from = module.demo_public_client.keycloak_role.composite_roles["lhm-ab-demo-frontend-viewer"]
-  to   = module.demo_public_client.module.oidc_client.keycloak_role.composite_roles["lhm-ab-demo-frontend-viewer"]
-}
-
 module "demo_public_client" {
   source = "../modules/oidc-client-spa"
 

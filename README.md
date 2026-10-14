@@ -1,19 +1,25 @@
+<!-- project shields / links -->
+[made-with-love-shield]: https://img.shields.io/badge/made%20with%20%E2%9D%A4%20by-it%40M-yellow?style=for-the-badge
+[itm-opensource]: https://opensource.muenchen.de/
+
 # Keycloak Terraform
 
 [![Made with love by it@M][made-with-love-shield]][itm-opensource]
 
-Collection of Terraform modules and example environments for configuring a Keycloak.
+Collection of Terraform modules and an example environment for configuring a [Keycloak](https://www.keycloak.org/) instance.
+
+The base modules are described further in there according README (in german).
 
 ## Usage
 
 ### Modules
 
+
 Example for the `oidc-client` module:
 
 ```terraform
 module "itm-oidc-client" {
-  source = "github.com/it-at-m/keycloak-tarraform/modules/oidc-client"
-  ref = "main" # Version
+  source = "github.com/it-at-m/keycloak-terraform/modules/oidc-client?ref=<version>"
 }
 ```
 
@@ -29,7 +35,7 @@ Creates an `LHM-Demo` realm with following clients and users:
   - `maria.admin` (PW: `Demo123!Admin`)
   - `thomas.tester` (PW: `Demo123!Test`)
 
-The according Terraform configuration can be found in [`./local`](./local).
+The according Terraform configuration can be found in [`example`](./example) with further information in the [LHM_DEMO_README.md](./example/LHM_DEMO_README.md).
 
 ## Contributing
 
@@ -49,7 +55,7 @@ More about this in the [CODE_OF_CONDUCT](/CODE_OF_CONDUCT.md) file.
 
 ## License
 
-Distributed under the MIT License. See [LICENSE][license] file for more information.
+Distributed under the MIT License. See [LICENSE](./LICENSE) file for more information.
 
 ## Contact
 
