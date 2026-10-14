@@ -1,0 +1,97 @@
+# Terraform
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+!example.tfvars
+.terraform/
+.terraform-plugins/
+.terraform.lock.hcl
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+
+# GitLab CI/CD mit echten Secrets
+.gitlab-ci-variables.md
+.env
+.env.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.cache
+
+# Virtual Environment
+venv/
+ENV/
+env/
+.venv
+
+# Claude Code (lokale Session-Notizen, nicht versionieren)
+CLAUDE.md
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Backup files
+*.backup
+*.bak
+*~
+
+# Sensitive data
+secrets/
+*.pem
+*.key
+*.crt
+*.p12
+
+# Credential files (NEVER commit these!)
+*-credentials.ps1
+*-token.ps1
+*.secret
+*.token
+set-terraform-credentials.ps1
+test-gitlab-token.ps1
+
+# OS
+Thumbs.db
+.DS_Store
