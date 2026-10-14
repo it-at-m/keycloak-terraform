@@ -8,8 +8,6 @@
 
 Collection of Terraform modules and an example environment for configuring a [Keycloak](https://www.keycloak.org/) instance.
 
-The base modules are described further in there according README (in german).
-
 ## Usage
 
 ### Modules
