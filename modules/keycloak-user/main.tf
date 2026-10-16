@@ -2,11 +2,11 @@ terraform {
   required_providers {
     keycloak = {
       source  = "keycloak/keycloak"
-      version = "~> 5.7.0"
+      version = "5.7.0"
     }
     random = {
       source  = "hashicorp/random"
-      version = "~> 3.6"
+      version = "3.9.1"
     }
   }
 }
