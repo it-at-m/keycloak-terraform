@@ -10,6 +10,6 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: it-at-m/lhm_actions/action-templates/actions/action-dockercompose-healthcheck@808f574bd8867b31524b254679fc34fb1fd78ea2 # v1.6.2
+      - uses: it-at-m/lhm_actions/action-templates/actions/action-dockercompose-healthcheck@4485daa4781dde13e7d9d5f4d8acbe33f993299c # v1.7.0
         with:
           compose-file-path: "./stack/"
